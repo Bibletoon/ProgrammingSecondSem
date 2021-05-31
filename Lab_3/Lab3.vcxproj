@@ -21,9 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{54cce36a-6d7a-4246-9590-ba39dbf73c1e}</ProjectGuid>
-    <RootNamespace>Lab5</RootNamespace>
+    <ProjectGuid>{5732028b-ac13-4ede-b998-a5d2e87f0935}</ProjectGuid>
+    <RootNamespace>Lab3</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Lab_3</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -88,6 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,14 +142,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataParser.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Route.cpp" />
+    <ClCompile Include="StationsCollection.cpp" />
+    <ClCompile Include="StringAlgorithms.cpp" />
+    <ClCompile Include="TransportStation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CircularBuffer.h" />
-    <ClInclude Include="CircularIterator.h" />
-    <ClInclude Include="SimpleIterator.h" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataParser.h" />
+    <ClInclude Include="Route.h" />
+    <ClInclude Include="StationsCollection.h" />
+    <ClInclude Include="StringAlgorithms.h" />
+    <ClInclude Include="TransportStation.h" />
+    <ClInclude Include="TransportType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="data.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\pugixml.1.11.0\build\native\pugixml.targets" Condition="Exists('..\packages\pugixml.1.11.0\build\native\pugixml.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\pugixml.1.11.0\build\native\pugixml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\pugixml.1.11.0\build\native\pugixml.targets'))" />
+  </Target>
 </Project>
