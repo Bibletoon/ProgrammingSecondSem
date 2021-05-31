@@ -5,9 +5,9 @@
 ---
 [Условия лабораторных](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Tasks)
 ---
-* [Лабораторная работа №1](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_01)
-* [Лабораторная работа №2](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_02)
-* [Лабораторная работа №3](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_03)
-* [Лабораторная работа №4](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_04)
-* [Лабораторная работа №5](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_05)
-* [Лабораторная работа №6](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_06)
+* [Лабораторная работа №1](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_1)
+* [Лабораторная работа №2](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_2)
+* [Лабораторная работа №3](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_3)
+* [Лабораторная работа №4](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_4)
+* [Лабораторная работа №5](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_5)
+* [Лабораторная работа №6](https://github.com/Bibletoon/ProgrammingSecondSem/tree/master/Lab_6)
