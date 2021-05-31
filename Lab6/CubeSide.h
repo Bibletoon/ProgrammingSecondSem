@@ -7,21 +7,22 @@ class CubeSide
 {
 public:
 	CubeSide();
-	CubeSide(int size, Color** colors);
-
-	std::string ToString();
-	std::string* ToStringArray();
+	CubeSide(std::array<std::array<Color, 3>, 3> colors);
+	CubeSide(const CubeSide& side);
+	~CubeSide();
+	CubeSide& operator=(const CubeSide& side);
+	//std::string ToString() const;
+	std::array<std::string, 3> ToStringArray() const;
 
 	void SpinForward(int times);
 	void SpinBackward(int times);
 
-	Color* GetRow(int number);
-	void SetRow(int number, Color* row);
-	Color* SwapRow(int number, Color* row);
-	Color* GetColumn(int number);
-	void SetColumn(int number, Color* column);
-	Color* SwapColumn(int number, Color* column);
+	std::array<Color, 3> GetRow(int number);
+	void SetRow(int number, std::array<Color, 3> row);
+	std::array<Color, 3> SwapRow(int number, std::array<Color, 3> row);
+	std::array<Color, 3> GetColumn(int number);
+	void SetColumn(int number, std::array<Color, 3> column);
+	std::array<Color, 3> SwapColumn(int number, std::array<Color, 3> column);
 private:
-	int _size;
-	Color** _side;
+	Color _side[3][3];
 };

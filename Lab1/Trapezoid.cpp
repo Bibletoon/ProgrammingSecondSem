@@ -4,7 +4,8 @@
 
 #include "Vector.h"
 
-Trapezoid::Trapezoid(const Point& pointOne, const Point& pointTwo, const Point& pointThree, const Point& pointFour) : Polygon(4, new Point[4]{ pointOne,pointTwo,pointThree,pointFour })
+Trapezoid::Trapezoid(const Point& pointOne, const Point& pointTwo, const Point& pointThree, const Point& pointFour) :
+	Polygon(4, new Point[4]{pointOne, pointTwo, pointThree, pointFour})
 {
 	if (!_checkValid())
 	{

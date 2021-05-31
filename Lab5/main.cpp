@@ -1,8 +1,33 @@
 #include <iostream>
 #include <algorithm>
 #include "CircularBuffer.h"
+#include "cassert"
 
-int main()
+void TestOnDouble()
+{
+	CircularBuffer<double> myBuffer(4);
+	myBuffer.pushFront(15);
+	assert(myBuffer.getFirst() == 15);
+	myBuffer.pushFront(-1.2);
+	assert(myBuffer.getFirst() == -1.2);
+	myBuffer.pushFront(120);
+	assert(myBuffer.getFirst() == 120);
+	myBuffer.pushBack(8);
+	assert(myBuffer.getLast() == 8);
+	myBuffer.pushBack(7.15);
+	assert(myBuffer.getLast() == 7.15);
+
+	assert(myBuffer[0] == -1.2);
+	assert(myBuffer[3] == 7.15);
+
+	std::sort(myBuffer.ubegin(), myBuffer.uend());
+
+	assert(myBuffer[0] == -1.2);
+	assert(myBuffer[3] == 15);
+	assert(std::any_of(myBuffer.ubegin(), myBuffer.uend(), [](double el)->bool {return el < 0; })==true);
+}
+
+void ShowOnDouble()
 {
 	CircularBuffer<double> myBuffer(4);
 	std::cout << "Initialise new buffer with capacity 4" << std::endl;
@@ -27,7 +52,7 @@ int main()
 
 	std::cout << "Iterate 10 times through buffer" << std::endl;
 	auto it = myBuffer.begin();
-	for (int i=0;i<10;i++)
+	for (int i = 0; i < 10; i++)
 	{
 		std::cout << *it << " ";
 		it = std::next(it);
@@ -48,5 +73,13 @@ int main()
 	std::cout << myBuffer << std::endl;
 
 	std::cout << "Is any element less than zero?" << std::endl;
-	std::cout << std::any_of(myBuffer.ubegin(), myBuffer.uend(), [](double el)->bool {return el < 0; });
+	std::cout << std::any_of(myBuffer.ubegin(), myBuffer.uend(), [](double el)-> bool { return el < 0; });
+}
+
+int main()
+{
+	std::cout << "Starting tests" << std::endl;
+	TestOnDouble();
+	std::cout << "Test passed" << std::endl;
+	ShowOnDouble();
 }

@@ -117,10 +117,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,21 +136,27 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>C:\Libs\oneTBB\oneapi-tbb-2021.2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Libs\oneTBB\oneapi-tbb-2021.2.0\lib\ia32\vc14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorMethods.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeSide.cpp" />
+    <ClCompile Include="DefaultCommandManager.cpp" />
+    <ClCompile Include="GeneticAlgorithmSolver.cpp" />
+    <ClCompile Include="GeneticAlgorithmUnit.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SideEnum.h" />
+    <ClCompile Include="StringAlgorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h" />
@@ -153,7 +164,12 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeRotationDirection.h" />
     <ClInclude Include="CubeSide.h" />
+    <ClInclude Include="DefaultCommandManager.h" />
+    <ClInclude Include="GeneticAlgorithmSolver.h" />
+    <ClInclude Include="GeneticAlgorithmUnit.h" />
     <ClInclude Include="IOManager.h" />
+    <ClInclude Include="SideTypeEnum.h" />
+    <ClInclude Include="StringAlgorithms.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="cube.txt">
@@ -161,6 +177,5 @@
     </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

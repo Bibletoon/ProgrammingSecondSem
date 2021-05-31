@@ -9,7 +9,7 @@ public:
 	PolygonalChain(int pointsCount, Point* points);
 	~PolygonalChain();
 	PolygonalChain(const PolygonalChain& polygonalChain);
-	PolygonalChain& operator = (PolygonalChain const& polygonalChain);
+	PolygonalChain& operator =(PolygonalChain const& polygonalChain);
 	Point GetPoint(int index) const;
 	int GetNumberOfPoints() const;
 	virtual float GetPerimeter() const;

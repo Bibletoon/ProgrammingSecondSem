@@ -2,7 +2,8 @@
 
 #include "Vector.h"
 
-Triangle::Triangle(const Point& pointOne, const Point& pointTwo, const Point& pointThree) : Polygon(3, new Point[3]{ pointOne, pointTwo, pointThree })
+Triangle::Triangle(const Point& pointOne, const Point& pointTwo, const Point& pointThree) : Polygon(
+	3, new Point[3]{pointOne, pointTwo, pointThree})
 {
 }
 
@@ -39,6 +40,6 @@ bool Triangle::IsRight() const
 	Vector sideTwo = Vector(_points[1], _points[2]);
 	Vector sideThree = Vector(_points[2], _points[0]);
 
-	return (sideOne.GetScalarProduct(sideTwo) == 0 || sideTwo.GetScalarProduct(sideThree) == 0 || sideThree.GetScalarProduct(sideOne) == 0);
-
+	return (sideOne.GetScalarProduct(sideTwo) == 0 || sideTwo.GetScalarProduct(sideThree) == 0 || sideThree.
+		GetScalarProduct(sideOne) == 0);
 }

@@ -8,7 +8,8 @@
 static class DataParser
 {
 public:
-	static bool ParseData(std::string filename, std::unordered_map<std::string, StationsCollection>& streetsMap, std::unordered_map<std::string, Route>& routesMap);
+	static bool ParseData(const std::string& filename, std::unordered_map<std::string, StationsCollection>& streetsMap,
+	                      std::unordered_map<std::string, Route>& routesMap);
 private:
 	static void fixStreetNames(std::string& name);
 };

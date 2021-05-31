@@ -6,7 +6,7 @@ class Route : public StationsCollection
 {
 public:
 	Route();
-	Route(std::string label,TransportType type);
+	Route(std::string label, const TransportType& type);
 	TransportType getType() const;
 	float getLength() const;
 private:

@@ -13,7 +13,7 @@ void DataParser::fixStreetNames(std::string& name)
 	StringAlgorithms::replace(name, "ул.", "улица");
 }
 
-bool DataParser::ParseData(std::string filename, std::unordered_map<std::string, StationsCollection>& streetsMap,
+bool DataParser::ParseData(const std::string& filename, std::unordered_map<std::string, StationsCollection>& streetsMap,
                            std::unordered_map<std::string, Route>& routesMap)
 {
 	pugi::xml_document doc;
@@ -48,14 +48,14 @@ bool DataParser::ParseData(std::string filename, std::unordered_map<std::string,
 		std::string coordinatesString = node.child("coordinates").first_child().value();
 		std::vector<std::string> coordinates = StringAlgorithms::split(coordinatesString, ",");
 
-		TransportType type = TransportType::Tram;
+		TransportType type = Tram;
 		if (typeOfVencile.compare("Автобус") == 0)
 		{
-			type = TransportType::Autobus;
+			type = Autobus;
 		}
 		else if (typeOfVencile.compare("Троллейбус") == 0)
 		{
-			type = TransportType::Trolleybus;
+			type = Trolleybus;
 		}
 		StringAlgorithms::replace(coordinates[0], ".", ",");
 		StringAlgorithms::replace(coordinates[1], ".", ",");
@@ -83,14 +83,14 @@ bool DataParser::ParseData(std::string filename, std::unordered_map<std::string,
 			std::string routeKey;
 			switch (type)
 			{
-			case TransportType::Autobus:
-				routeKey = "A"+route;
+			case Autobus:
+				routeKey = "A" + route;
 				break;
-			case TransportType::Trolleybus:
-				routeKey = "B"+ route;
+			case Trolleybus:
+				routeKey = "B" + route;
 				break;
-			case TransportType::Tram:
-				routeKey = "C"+ route;
+			case Tram:
+				routeKey = "C" + route;
 				break;
 			}
 			if (!routesMap.contains(routeKey))

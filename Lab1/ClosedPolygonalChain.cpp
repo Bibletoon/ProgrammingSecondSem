@@ -6,9 +6,9 @@ ClosedPolygonalChain::ClosedPolygonalChain(int pointsCount, Point* points) : Pol
 {
 }
 
-ClosedPolygonalChain::ClosedPolygonalChain(const ClosedPolygonalChain& polygonalChain) : PolygonalChain(polygonalChain)
-{
-}
+//ClosedPolygonalChain::ClosedPolygonalChain(const ClosedPolygonalChain& polygonalChain) : PolygonalChain(polygonalChain)
+//{
+//}
 
 ClosedPolygonalChain::~ClosedPolygonalChain()
 {

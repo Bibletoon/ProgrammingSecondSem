@@ -4,7 +4,9 @@
 class TransportStation
 {
 public:
-	TransportStation(std::string name, float x, float y) : _name(name), _coordinateX(x), _coordinateY(y) {};
+	TransportStation(std::string name, float x, float y) : _name(name), _coordinateX(x), _coordinateY(y)
+	{
+	};
 	float getX() const;
 	float getY() const;
 	std::string getName() const;

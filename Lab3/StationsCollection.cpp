@@ -22,4 +22,3 @@ void StationsCollection::addStation(const TransportStation& station)
 {
 	_stations.push_back(station);
 }
-

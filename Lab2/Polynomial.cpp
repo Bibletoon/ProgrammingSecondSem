@@ -9,7 +9,7 @@ int Polynomial::GetVariablesCount() const
 	return _variablesCount;
 }
 
-Polynomial::Polynomial() : Polynomial(1,new float[1]{0})
+Polynomial::Polynomial() : Polynomial(1, new float[1]{0})
 {
 }
 
@@ -23,14 +23,14 @@ Polynomial::Polynomial(int variablesCount, float* coefficients, bool fromHeighes
 		{
 			_coefficients[i] = coefficients[_variablesCount - i - 1];
 		}
-	} else
+	}
+	else
 	{
-		for (int i = 0; i<_variablesCount;i++)
+		for (int i = 0; i < _variablesCount; i++)
 		{
 			_coefficients[i] = coefficients[i];
 		}
 	}
-	
 }
 
 Polynomial::~Polynomial()
@@ -42,7 +42,7 @@ Polynomial& Polynomial::operator=(const Polynomial& polynomial)
 {
 	_variablesCount = polynomial._variablesCount;
 	_coefficients = new float[_variablesCount];
-	for (int i=0; i<_variablesCount; i++)
+	for (int i = 0; i < _variablesCount; i++)
 	{
 		_coefficients[i] = polynomial._coefficients[i];
 	}
@@ -52,7 +52,7 @@ Polynomial& Polynomial::operator=(const Polynomial& polynomial)
 bool Polynomial::operator==(const Polynomial& polynomial) const
 {
 	if (_variablesCount != polynomial._variablesCount) return false;
-	for (int i=0; i<_variablesCount; i++)
+	for (int i = 0; i < _variablesCount; i++)
 	{
 		if (_coefficients[i] != _coefficients[i]) return false;
 	}
@@ -72,7 +72,7 @@ bool Polynomial::operator!=(const Polynomial& polynomial) const
 Polynomial Polynomial::operator-()
 {
 	float* newCoefficients = new float[_variablesCount];
-	for (int i=0;i<_variablesCount; i++)
+	for (int i = 0; i < _variablesCount; i++)
 	{
 		newCoefficients[i] = _coefficients[i] * (-1);
 	}
@@ -83,14 +83,14 @@ Polynomial Polynomial::operator-(const Polynomial& polynomial)
 {
 	int variablesCount = std::max(_variablesCount, polynomial._variablesCount);
 	float* newCoeficients = new float[variablesCount];
-	for (int i=0; i<variablesCount;i++)
+	for (int i = 0; i < variablesCount; i++)
 	{
 		float coefficient = 0;
-		if (i<_variablesCount)
+		if (i < _variablesCount)
 		{
 			coefficient += _coefficients[i];
 		}
-		if (i<polynomial._variablesCount)
+		if (i < polynomial._variablesCount)
 		{
 			coefficient -= polynomial._coefficients[i];
 		}
@@ -170,9 +170,9 @@ Polynomial Polynomial::operator*(const Polynomial& polynomial) const
 	int variablesCount = _variablesCount + polynomial._variablesCount - 1;
 	float* newCoefficients = new float[variablesCount];
 	for (int i = 0; i < variablesCount; i++) { newCoefficients[i] = 0; }
-	for (int i=0;i<_variablesCount;i++)
+	for (int i = 0; i < _variablesCount; i++)
 	{
-		for (int j=0;j<polynomial._variablesCount;j++)
+		for (int j = 0; j < polynomial._variablesCount; j++)
 		{
 			newCoefficients[i + j] += _coefficients[i] * polynomial._coefficients[j];
 		}
@@ -187,7 +187,7 @@ Polynomial Polynomial::operator*(float coefficient) const
 		return Polynomial();
 	}
 	float* newCoefficient = new float[_variablesCount];
-	for (int i=0; i<_variablesCount;i++)
+	for (int i = 0; i < _variablesCount; i++)
 	{
 		newCoefficient[i] = _coefficients[i] * coefficient;
 	}
@@ -257,7 +257,7 @@ Polynomial& Polynomial::operator/=(float coefficient)
 
 float Polynomial::operator[](int index) const
 {
-	if (index<0 || index>=_variablesCount)
+	if (index < 0 || index >= _variablesCount)
 	{
 		throw std::out_of_range("Index out of range");
 	}
@@ -268,7 +268,7 @@ float Polynomial::operator[](int index) const
 std::ostream& operator<<(std::ostream& out, const Polynomial& polynomial)
 {
 	bool firstIsOut = false;
-	for (int i= polynomial.GetVariablesCount()-1;i>=0;i--)
+	for (int i = polynomial.GetVariablesCount() - 1; i >= 0; i--)
 	{
 		if (polynomial[i] == 0 && polynomial.GetVariablesCount()) continue;
 		if (polynomial[i] > 0 && firstIsOut)
@@ -276,10 +276,11 @@ std::ostream& operator<<(std::ostream& out, const Polynomial& polynomial)
 			out << "+";
 		}
 		firstIsOut = true;
-		if (i==0 || (polynomial[i]!=1 && polynomial[i]!=-1))
+		if (i == 0 || (polynomial[i] != 1 && polynomial[i] != -1))
 		{
 			out << polynomial[i];
-		} else if (polynomial[i]==-1)
+		}
+		else if (polynomial[i] == -1)
 		{
 			out << "-";
 		}
@@ -289,10 +290,11 @@ std::ostream& operator<<(std::ostream& out, const Polynomial& polynomial)
 		}
 		else if (i > 1)
 		{
-			if (abs(polynomial[i])==1)
+			if (abs(polynomial[i]) == 1)
 			{
 				out << "x^" << i;
-			} else
+			}
+			else
 			{
 				out << "(x^" << i << ")";
 			}
@@ -314,7 +316,7 @@ std::istream& operator>>(std::istream& in, Polynomial& polynomial)
 		coefficients.push_back(number);
 	}
 	float* newCoefficients = new float[i];
-	for (int j = 0; j<i;j++)
+	for (int j = 0; j < i; j++)
 	{
 		newCoefficients[j] = coefficients[j];
 	}

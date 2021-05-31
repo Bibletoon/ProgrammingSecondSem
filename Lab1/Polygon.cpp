@@ -62,7 +62,8 @@ bool Polygon::_checkValid()
 		if (sign != (product > 0) || (wasZero && product == 0)) return false;
 		wasZero = sign == 0;
 	}
-	product = Vector(_points[_pointsCount - 2], _points[_pointsCount - 1]).GetCrossProduct(Vector(_points[_pointsCount - 1], _points[0]));
+	product = Vector(_points[_pointsCount - 2], _points[_pointsCount - 1]).GetCrossProduct(
+		Vector(_points[_pointsCount - 1], _points[0]));
 	if (sign != (product > 0) || (wasZero && product == 0)) return false;
 	wasZero = sign == 0;
 	product = Vector(_points[_pointsCount - 1], _points[0]).GetCrossProduct(Vector(_points[0], _points[1]));

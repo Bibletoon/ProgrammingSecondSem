@@ -1,5 +1,6 @@
 #pragma once
 #include "Polygon.h"
+
 class Triangle : public Polygon
 {
 public:
@@ -8,6 +9,6 @@ public:
 	Triangle(int pointsCount, Point* points);
 	~Triangle();
 	Triangle(const Triangle& triangle);
-	Triangle& operator = (Triangle const& triangle);
+	Triangle& operator =(Triangle const& triangle);
 	bool IsRight() const;
 };

@@ -8,7 +8,7 @@ public:
 	~Point();
 	Point(float x, float y);
 	Point(const Point& point);
-	Point& operator = (const Point& point);
+	Point& operator =(const Point& point);
 	float GetX() const;
 	float GetY() const;
 	std::tuple<int, int> GetCoordinates() const;

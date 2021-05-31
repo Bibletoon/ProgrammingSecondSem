@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
+//TODO: Make Point* const
 PolygonalChain::PolygonalChain(int pointsCount, Point* points)
 {
 	_pointsCount = pointsCount;

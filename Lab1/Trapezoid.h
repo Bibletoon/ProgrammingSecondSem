@@ -9,7 +9,7 @@ public:
 	Trapezoid(int pointsCount, Point* points);
 	~Trapezoid();
 	Trapezoid(const Trapezoid& triangle);
-	Trapezoid& operator = (Trapezoid const& triangle);
+	Trapezoid& operator =(Trapezoid const& triangle);
 protected:
 	bool _checkValid() override;
 };

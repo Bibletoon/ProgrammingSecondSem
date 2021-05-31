@@ -2,22 +2,28 @@
 #include "CircularIterator.h"
 #include "SimpleIterator.h"
 
-template<typename T>
+template <class T>
 class CircularBuffer
 {
 public:
-	CircularBuffer() :_data(nullptr), _capacity(0) {}
+	CircularBuffer() : _data(nullptr), _capacity(0)
+	{
+	}
+
 	explicit CircularBuffer(size_t capacity) : _capacity(capacity)
 	{
 		_data = new T[capacity];
 	}
-	CircularBuffer(const CircularBuffer& buffer) :_capacity(buffer._capacity), _size(buffer._size), _data(buffer._data) {}
+
+	CircularBuffer(const CircularBuffer& buffer) : _data(buffer._data), _size(buffer._size), _capacity(buffer._capacity)
+	{
+	}
 
 	CircularBuffer(const std::initializer_list<T>& initList)
 	{
 		_capacity = initList.size();
 		_size = 0;
-		_data = new  T[_capacity];
+		_data = new T[_capacity];
 		int i = 0;
 		for (auto iterator = initList.begin(); iterator != initList.end(); ++iterator)
 		{
@@ -25,17 +31,17 @@ public:
 			_size++;
 		}
 	}
-	
+
 	~CircularBuffer()
 	{
 		delete[] _data;
 	}
 
-	CircularBuffer& operator= (const CircularBuffer& buffer)
+	CircularBuffer& operator=(const CircularBuffer& buffer)
 	{
 		_capacity = buffer._capacity;
 		_size = buffer._size;
-		T* newCollection = new  T[_capacity];
+		T* newCollection = new T[_capacity];
 		for (size_t i = 0; i < _size; i++)
 		{
 			newCollection[i] = buffer._data[i];
@@ -44,12 +50,12 @@ public:
 		return *this;
 	}
 
-	CircularBuffer& operator= (const std::initializer_list<T>& initList)
+	CircularBuffer& operator=(const std::initializer_list<T>& initList)
 	{
 		_capacity = initList.size();
 		_size = 0;
 		delete[] _data;
-		_data = new  T[_capacity];
+		_data = new T[_capacity];
 		for (auto iterator = initList.begin(); iterator != initList.end(); ++iterator)
 		{
 			pushBack(*iterator);
@@ -57,21 +63,21 @@ public:
 		return *this;
 	}
 
-	T operator[] (int index) const
+	T operator[](int index) const
 	{
 		return _data[index % _capacity];
 	}
 
 	CircularIterator<T> begin() const
 	{
-		return CircularIterator<T>(_data, _data, _data+_size-1, _capacity);
+		return CircularIterator<T>(_data, _data, _data + _size - 1, _capacity);
 	}
 
 	SimpleIterator<T> ubegin() const
 	{
 		return SimpleIterator<T>(_data);
 	}
-	
+
 	CircularIterator<T> end() const
 	{
 		return CircularIterator<T>(_data + _size - 1, _data, _data + _size - 1, _capacity);
@@ -79,9 +85,9 @@ public:
 
 	SimpleIterator<T> uend() const
 	{
-		return SimpleIterator<T>(_data+_size);
+		return SimpleIterator<T>(_data + _size);
 	}
-	
+
 	void pushFront(T element)
 	{
 		for (size_t i = _size - (1 * (_size == _capacity)); i > 0; i--)
@@ -127,12 +133,12 @@ public:
 		if (_size != 0) _size--;
 	}
 
-	T getFirst()
+	T getFirst() const
 	{
 		return _data[0];
 	}
 
-	T getLast()
+	T getLast() const
 	{
 		return _data[_size - 1];
 	}

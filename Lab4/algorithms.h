@@ -2,9 +2,9 @@
 #include <iterator>
 
 
-namespace  myAlgorithms
+namespace myAlgorithms
 {
-	template<class Iterator, class UnaryPredicate>
+	template <class Iterator, class UnaryPredicate>
 	bool all_of(const Iterator& first, const Iterator& last, const UnaryPredicate& func)
 	{
 		for (auto it = first; it != last; it = std::next(it))
@@ -14,7 +14,7 @@ namespace  myAlgorithms
 		return true;
 	}
 
-	template<class Iterator, class UnaryPredicate>
+	template <class Iterator, class UnaryPredicate>
 	bool any_of(const Iterator& first, const Iterator& last, const UnaryPredicate& func)
 	{
 		for (auto it = first; it != last; it = std::next(it))
@@ -24,7 +24,7 @@ namespace  myAlgorithms
 		return false;
 	}
 
-	template<class Iterator, class UnaryPredicate>
+	template <class Iterator, class UnaryPredicate>
 	bool none_of(const Iterator& first, const Iterator& last, const UnaryPredicate& func)
 	{
 		for (auto it = first; it != last; it = std::next(it))
@@ -34,7 +34,7 @@ namespace  myAlgorithms
 		return true;
 	}
 
-	template<class Iterator, class UnaryPredicate>
+	template <class Iterator, class UnaryPredicate>
 	bool one_of(const Iterator& first, const Iterator& last, const UnaryPredicate& func)
 	{
 		bool was = false;
@@ -49,7 +49,7 @@ namespace  myAlgorithms
 		return was;
 	}
 
-	template<class Iterator, class Comparator>
+	template <class Iterator, class Comparator>
 	bool is_sorted(const Iterator& first, const Iterator& last, const Comparator& func)
 	{
 		if (first == last) return true;
@@ -62,7 +62,7 @@ namespace  myAlgorithms
 		return true;
 	}
 
-	template<class Iterator, class UnaryPredicate>
+	template <class Iterator, class UnaryPredicate>
 	bool is_partitioned(const Iterator& first, const Iterator& last, const UnaryPredicate& func)
 	{
 		Iterator it = first;
@@ -78,7 +78,7 @@ namespace  myAlgorithms
 		return true;
 	}
 
-	template<class Iterator, class T>
+	template <class Iterator, class T>
 	Iterator find_not(const Iterator& first, const Iterator& last, T element)
 	{
 		Iterator it;
@@ -89,7 +89,7 @@ namespace  myAlgorithms
 		return it;
 	}
 
-	template<class Iterator, class T>
+	template <class Iterator, class T>
 	Iterator find_backward(const Iterator& first, const Iterator& last, T element)
 	{
 		Iterator it = std::prev(last);
@@ -103,16 +103,17 @@ namespace  myAlgorithms
 		return std::prev(it);
 	}
 
-	template<class Iterator, class Comparator>
+	template <class Iterator, class Comparator>
 	bool is_palindrome(const Iterator& first, const Iterator& last, const Comparator& func)
 	{
 		if (first == last) return true;
 		auto rightIt = std::prev(last);
 		auto leftIt = first;
-		while (leftIt!=last)
+		while (true)
 		{
 			if (!func(*leftIt, *rightIt)) return false;
 			leftIt = std::next(leftIt);
+			if (leftIt == last) break;
 			rightIt = std::prev(rightIt);
 		}
 		return true;

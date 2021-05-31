@@ -1,7 +1,7 @@
 #pragma once
 enum CubeRotateDirectionEnum
 {
-	X = 0,
-	Y = 1,
-	Z = 2
+	XDirection = 0,
+	YDirection = 1,
+	ZDirection = 2
 };

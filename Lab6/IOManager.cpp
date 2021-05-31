@@ -1,62 +1,67 @@
 ﻿#include "IOManager.h"
 
-#include "IOManager.h"
+#include <array>
 
 #include "ColorMethods.h"
 
-Cube IOManager::ReadCube(std::string filename, int size)
+Cube IOManager::ReadCube(std::string filename)
 {
 	std::ifstream fin(filename);
-	CubeSide* sides = new CubeSide[6];
+	std::array<CubeSide, 6> sides;
 
 	std::string sideString;
-	std::string* sideStrings = new std::string[size];
-	std::string* sideStringsRaw = new std::string[size];
-	
-	for (int i=0;i<size;i++)
+	std::string sideStrings[3];
+	std::string sideStringsRaw[3];
+
+	for (int i = 0; i < 3; i++)
 	{
 		fin >> sideString;
 		sideStrings[i] = sideString;
 	}
-	sides[0] = parseSide(sideStrings, size);
+	sides[0] = parseSide(sideStrings);
 
-	for (int i=0;i<size;i++)
+	for (int i = 0; i < 3; i++)
 	{
 		fin >> sideString;
 		sideStringsRaw[i] = sideString;
 	}
 
-	for (int i=1;i<5;i++)
+	for (int i = 1; i < 5; i++)
 	{
-		for (int j=0;j<size;j++)
+		for (int j = 0; j < 3; j++)
 		{
-			sideStrings[j] = sideStringsRaw[j].substr(0, size);
-			sideStringsRaw[j] = sideStringsRaw[j].erase(0, size);
+			sideStrings[j] = sideStringsRaw[j].substr(0, 3);
+			sideStringsRaw[j] = sideStringsRaw[j].erase(0, 3);
 		}
-		sides[i] = parseSide(sideStrings, size);
+		sides[i] = parseSide(sideStrings);
 	}
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		fin >> sideString;
 		sideStrings[i] = sideString;
 	}
-	sides[5] = parseSide(sideStrings, size);
+	sides[5] = parseSide(sideStrings);
 	fin.close();
-	return Cube(sides, size);
+	return Cube(sides);
 }
 
-CubeSide IOManager::parseSide(std::string* sideStrings, int size)
+void IOManager::SaveCube(const Cube& cube, std::string filename)
 {
-	Color** curSideColors = new Color * [size];
-	for (int i=0;i<size;i++)
+	std::ofstream fout(filename);
+	fout << cube.ToString();
+	fout.close();
+}
+
+CubeSide IOManager::parseSide(std::string* sideStrings)
+{
+	std::array<std::array<Color, 3>, 3> curSideColors;
+	for (int i = 0; i < 3; i++)
 	{
-		Color* row = new Color[size];
-		for (int j = 0; j < size; j++)
+		for (int j = 0; j < 3; j++)
 		{
-			row[j] = ColorMethods::CharToColor(sideStrings[i][j]);
+			curSideColors[i][j] = ColorMethods::CharToColor(sideStrings[i][j]);
 		}
-		curSideColors[i] = row;
 	}
-	return CubeSide(size, curSideColors);
+	return CubeSide(curSideColors);
 }

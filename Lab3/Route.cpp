@@ -1,12 +1,13 @@
 ﻿#include "Route.h"
-
+#include <cmath>
 #include <algorithm>
+#include <numeric>
 
-Route::Route() : StationsCollection()
+Route::Route() : StationsCollection(), _type()
 {
 }
 
-Route::Route(std::string label, TransportType type) : StationsCollection(label), _type(type)
+Route::Route(std::string label, const TransportType& type) : StationsCollection(label), _type(type)
 {
 }
 
@@ -21,7 +22,7 @@ int Route::getNearestPointIndex(int index, bool* used, float& returnDistance) co
 	float distance = 10000;
 	for (int i = 0; i < _stations.size(); i++)
 	{
-		if (used[i]==true) continue;
+		if (used[i] == true) continue;
 		float dist = _stations[i].getDistance(_stations[index]);
 		if (isnan(dist))
 		{
@@ -39,9 +40,8 @@ int Route::getNearestPointIndex(int index, bool* used, float& returnDistance) co
 
 float Route::getLength() const
 {
-	//_station
 	bool* used = new bool[_stations.size()];
-	for (int i=0;i<_stations.size();i++)
+	for (int i = 0; i < _stations.size(); i++)
 	{
 		used[i] = false;
 	}
@@ -56,16 +56,17 @@ float Route::getLength() const
 	used[indexOne] = true;
 	used[indexTwo] = true;
 	length += distanceToOne;
-	while (!std::all_of(used,used+_stations.size(),[](bool i){return i;}))
+	while (!std::all_of(used, used + _stations.size(), [](bool i) { return i; }))
 	{
-		nearestToOne = getNearestPointIndex(indexOne,used,distanceToOne);
-		nearestToTwo = getNearestPointIndex(indexTwo, used,distanceToTwo);
-		if (distanceToOne<distanceToTwo)
+		nearestToOne = getNearestPointIndex(indexOne, used, distanceToOne);
+		nearestToTwo = getNearestPointIndex(indexTwo, used, distanceToTwo);
+		if (distanceToOne < distanceToTwo)
 		{
 			indexOne = nearestToOne;
 			length += distanceToOne;
 			used[indexOne] = true;
-		} else
+		}
+		else
 		{
 			indexTwo = nearestToTwo;
 			length += distanceToTwo;
@@ -73,4 +74,63 @@ float Route::getLength() const
 		}
 	}
 	return length;
+	/*int n = _stations.size();
+	
+	float** distance = new float* [n];
+
+	for (int i=0;i<n;i++)
+	{
+		distance[i] = new float[n];
+	}
+	
+	for (int i=0;i<n;i++)
+	{
+		for (int j=0;j<n;j++)
+		{
+			distance[i][j] = _stations[i].getDistance(_stations[j]);
+		}
+	}
+	bool* used = new bool[n];
+	for (int i=0;i<n;i++)
+	{
+		used[i] = false;
+	}
+
+	float* curMinDist = new float[n];
+	for (int i=0; i<n;i++)
+	{
+		curMinDist[i] = 1e20;
+	}
+
+	curMinDist[0] = 0;
+	
+	for (int i=0;i<n;i++)
+	{
+		int f = -1;
+		for (int j=0; j<n;j++)
+		{
+			if (!used[j] && (f==-1 || curMinDist[f] > curMinDist[j]))
+			{
+				f = j;
+			}
+		}
+
+		used[f] = true;
+
+		for (int j=0;j<n;j++)
+		{
+			if (!used[j] && distance[f][j] < curMinDist[j])
+			{
+				curMinDist[j] = distance[f][j];
+			}
+		}
+	}
+
+	float res = std::accumulate(curMinDist, curMinDist + n, 0);
+
+	delete[] distance;
+	delete[] curMinDist;
+	delete[] used;
+	
+	return res;*/
 }

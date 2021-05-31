@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GeneticAlgorithm">
+      <UniqueIdentifier>{506ea834-fbc0-4418-8573-223b7ad6bab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GeneticAlgorithmm">
+      <UniqueIdentifier>{9baa36b6-b90d-424b-b240-4d7728cb05d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,14 +30,23 @@
     <ClCompile Include="CubeSide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SideEnum.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="IOManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ColorMethods.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultCommandManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringAlgorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneticAlgorithmSolver.cpp">
+      <Filter>Source Files\GeneticAlgorithmm</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneticAlgorithmUnit.cpp">
+      <Filter>Source Files\GeneticAlgorithmm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +67,21 @@
     </ClInclude>
     <ClInclude Include="ColorMethods.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SideTypeEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultCommandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringAlgorithms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneticAlgorithmSolver.h">
+      <Filter>Header Files\GeneticAlgorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneticAlgorithmUnit.h">
+      <Filter>Header Files\GeneticAlgorithm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
